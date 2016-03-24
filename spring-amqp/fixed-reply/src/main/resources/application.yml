@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+spring:
+  rabbitmq:
+    dynamic: true
+    host: ${rabbit.host:localhost}
+    port: 5672
+    username: wfij
+    password:  kkslcm8923s
+    virtual-host: /wfij
+    listener:
+     
+      #max pool size of thread is 10
+      max-concurrency: 10
+      #核心的listen thread 是3 
+      concurrency: 5
+      # the container will acknowledge the message automatically, unless the MessageListener throws an exception. Note that acknowledgeMode is complementary to channelTransacted - if the channel is transacted then the broker requires a commit notification in addition to the ack. This is the default mode. See also txSize.
+      acknowledge-mode: auto
+      auto-startup: true
+      #The number of messages to accept from the broker in one socket frame
+      prefetch: 5
+      #When used with acknowledgeMode AUTO, the container will attempt to process up to this number of messages before sending an ack 
+      transaction-size: 5
+      
+    
+    
+    
