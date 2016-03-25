@@ -1,0 +1,7 @@
+demo/Application.class
+demo/rabbit/RabbitConfig.class
+demo/rabbit/ReplyConfig.class
+demo/rabbit/ReplyReceiver.class
+demo/rabbit/Send$1.class
+demo/rabbit/Receiver.class
+demo/rabbit/Send.class
