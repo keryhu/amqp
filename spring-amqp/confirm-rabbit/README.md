@@ -108,7 +108,7 @@ The whole export from terminal :
 
 
 
-but no expected :
+but no expected string  printed on the terminal:
 
 	 "this is the reply :  --< "+s+" >"	
 
