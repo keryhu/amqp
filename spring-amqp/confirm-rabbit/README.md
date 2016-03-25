@@ -95,7 +95,26 @@ The whole export from terminal :
 	confirmCD.get() is : null
 	result is : HELLO
 
+> *Second: I set a reply listener :*
+
+	@Component
+	public class ReplyReceiver {
+		
+	     @RabbitListener(queues = "reply-queue")
+		public void handleMessage(String s){
+			System.out.println("this is the reply :  --< "+s+" >");			
+		}
+	}
+
+
+
+but no expected :
+
+	 "this is the reply :  --< "+s+" >"	
+
 Maybe there is some mistake in my program , but not  knowing how resolve it .
+
+
 	
 	
 	
