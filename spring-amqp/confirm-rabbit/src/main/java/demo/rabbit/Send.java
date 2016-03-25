@@ -66,7 +66,7 @@ public class Send {
 		CorrelationData correlationData = new CorrelationData("abc");
 
 		rabbitTemplate.setMandatory(true);
-		rabbitTemplate.setReplyAddress("reply-queue");
+		
 		
 		// 设置rabbitTemplate的retry 功能
 
