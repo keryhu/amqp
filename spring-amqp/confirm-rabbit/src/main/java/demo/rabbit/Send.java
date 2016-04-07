@@ -2,6 +2,7 @@ package demo.rabbit;
 
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.springframework.amqp.core.Message;
@@ -48,7 +49,7 @@ public class Send {
 			public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 				// TODO Auto-generated method stub
 				confirmCD.set(correlationData);
-				
+				latch.countDown();
 				// 如果发送message失败，那么就重试。
 				if (!ack) {
 					//retrySend.send("spring-boots5", message, new CorrelationData(UUID.randomUUID().toString()));
@@ -71,7 +72,15 @@ public class Send {
 		// 设置rabbitTemplate的retry 功能
 
 		String result = (String)rabbitTemplate.convertSendAndReceive("confirm-queue", (Object)"hello",correlationData);
-
+		
+		//为了能使打印出confirmCD.get(),这里让该线程暂停1s
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		System.out.println("confirmCD.get() is : "+confirmCD.get());
 		System.out.println("result is : "+result);
